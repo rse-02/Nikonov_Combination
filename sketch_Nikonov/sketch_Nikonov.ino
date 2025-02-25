@@ -2,6 +2,7 @@
 #ifdef __AVR__
 #include <avr/power.h>
 #endif
+
 int S=255;
 int H=255;
 int V=255;
@@ -16,8 +17,8 @@ int STR[64] ={
     3,3,3,3,4,4,4,4};
 
 
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(64, 2, NEO_GRB + NEO_KHZ800);
 
-Adafruit_NeoPixel pixels_2 = Adafruit_NeoPixel(64, 8, NEO_GRB + NEO_KHZ800);
 
 
 //Спосоности игроков
@@ -42,32 +43,28 @@ void knop(int a){
 }
 
 
-void matrix(int zasvet){
-    for (int a=0;a>64;a++) {
+void matrix(int zasvet, int zona){
+  for (int a=0;a>64;a++) {
     if (zasvet == 1){
-      if (STR[a] == 1){
-
+      if (STR[a] == zona){
+         if (zona==1){
+          strip.setPixelColor(a, strip.Color(255, 255, 255));
+         }
+         if (zona==1){
+          strip.setPixelColor(a, strip.Color(0, 0, 255));
+         }
+         if (zona==1){
+          strip.setPixelColor(a, strip.Color(255, 0, 0));
+         }
+         if (zona==1){
+          strip.setPixelColor(a, strip.Color(0, 255, 0));
+         }
       }
     }
-    if (zasvet == 2){
-      if (STR[a] == 2){
-
-      }
-    }
-    if (zasvet == 2){
-      if (STR[a] == 2){
-
-      }
-    }
-    if (zasvet == 4){
-      if (STR[a] == 4){
-
-      }
-    }
-
-  }
+  }  
 }
 void setup() {
+   strip.begin();
   Serial.begin(9600);
   // put your setup code here, to run once:
   pinMode(4,INPUT_PULLUP);
@@ -84,5 +81,7 @@ void loop() {
   // put your main code here, to run repeatedly:
   knop(1);
 delay(100);
+matrix(1,1);
+strip.show();
  
 }
