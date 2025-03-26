@@ -75,13 +75,25 @@ void setup() {
   pinMode(9,INPUT_PULLUP);
   pinMode(10,INPUT_PULLUP);
   pinMode(11,INPUT_PULLUP);
+  int s=0;
+  
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  knop(1);
-delay(100);
-matrix(1,1);
-strip.show();
- 
+//Переход Триггеры
+
+
+//-----------
+//Состояния
+//Ждать
+if(s==1) {
+  
 }
+//работа
+if (s==1) {
+ //----------
+}
+
+//разряжен
+if (s==1) {
+}  
