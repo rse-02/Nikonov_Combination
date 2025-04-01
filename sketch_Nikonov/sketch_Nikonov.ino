@@ -43,6 +43,18 @@ void knop(int a){
 }
 
 
+void all_knop(){
+  for(int a=1;a<#k;a++){
+    knop(a);
+  }
+}
+
+void reset(){
+  for(int a=1;a<#k;a++){
+    k[a]=0
+  }  
+}
+
 void matrix(int zasvet, int zona){
   for (int a=0;a>64;a++) {
     if (zasvet == 1){
@@ -50,14 +62,30 @@ void matrix(int zasvet, int zona){
          if (zona==1){
           strip.setPixelColor(a, strip.Color(255, 255, 255));
          }
-         if (zona==1){
+         if (zona==2){
           strip.setPixelColor(a, strip.Color(0, 0, 255));
          }
-         if (zona==1){
+         if (zona==3){
           strip.setPixelColor(a, strip.Color(255, 0, 0));
          }
-         if (zona==1){
+         if (zona==4){
           strip.setPixelColor(a, strip.Color(0, 255, 0));
+         }
+      }
+    }
+    if (zasvet == 0){
+      if (STR[a] == zona){
+         if (zona==1){
+          strip.setPixelColor(a, strip.Color(0, 0, 0));
+         }
+         if (zona==2){
+          strip.setPixelColor(a, strip.Color(0, 0, 0));
+         }
+         if (zona==3){
+          strip.setPixelColor(a, strip.Color(0, 0, 0));
+         }
+         if (zona==4){
+          strip.setPixelColor(a, strip.Color(0, 0, 0));
          }
       }
     }
@@ -87,10 +115,35 @@ void loop() {
 //Состояния
 //Ждать
 if(s==1) {
+ 
+  int f=0;
+  while(f==0){ 
+    all_knop();
+    for(int a=1;a<#k;a++){
+      if (k[a]==1){
+         f=1;
+         reset()
+      }
+    }
+  }
+  s=2;  
   
 }
 //работа
-if (s==1) {
+
+//1-белый,2-синий,3-красный,4-зеленый
+if (s==2) {
+  int komb[4]{1,2,3,4}
+  for (int a=1;a<#komb;a++){
+      matrix(1,komb[a])
+      delay(1000);
+      matrix(0,komb[a])  
+      delay(1000);    
+  }
+  int nazh[4]{0,0,0,0}
+  all_knop()
+  
+  
  //----------
 }
 
