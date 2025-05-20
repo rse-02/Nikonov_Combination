@@ -28,6 +28,7 @@ void debug(long a){
 }
 
 int k[8]={0,0,0,0,0,0,0,0};
+int size_k=sizeof(k) / sizeof(k[0]);
 //------------------4-11------
 
 void knop(int a){
@@ -36,7 +37,7 @@ void knop(int a){
     k[a]=1;
     //debug(k[a]);
     while (digitalRead(a+3)==0){
-
+      debug(digitalRead(a+3));
     }
     delay(50);
   }
@@ -44,14 +45,14 @@ void knop(int a){
 
 
 void all_knop(){
-  for(int a=1;a<#k;a++){
+  for(int a=1;a<size_k;a++){
     knop(a);
   }
 }
 
-void reset(){
-  for(int a=1;a<#k;a++){
-    k[a]=0
+void reset() {
+  for(int a=1;a<size_k;a++){
+    k[a]=0;
   }  
 }
 
@@ -103,50 +104,55 @@ void setup() {
   pinMode(9,INPUT_PULLUP);
   pinMode(10,INPUT_PULLUP);
   pinMode(11,INPUT_PULLUP);
-  int s=0;
   
 }
 
+int s=0;
 void loop() {
-//Переход Триггеры
+  knop(4);
+// //Переход Триггеры
 
 
-//-----------
-//Состояния
-//Ждать
-if(s==1) {
+// //-----------
+// //Состояния
+// //Ждать
+// if(s==1) {
  
-  int f=0;
-  while(f==0){ 
-    all_knop();
-    for(int a=1;a<#k;a++){
-      if (k[a]==1){
-         f=1;
-         reset()
-      }
-    }
-  }
-  s=2;  
+//   int f=0;
+//   while(f==0){ 
+//     all_knop();
+//     for(int a=1;a<size_k;a++){
+//       if (k[a]==1){
+//          f=1;
+//          reset();
+//       }
+//     }
+//   }
+//   s=2;  
   
-}
-//работа
+// }
+// //работа
 
-//1-белый,2-синий,3-красный,4-зеленый
-if (s==2) {
-  int komb[4]{1,2,3,4}
-  for (int a=1;a<#komb;a++){
-      matrix(1,komb[a])
-      delay(1000);
-      matrix(0,komb[a])  
-      delay(1000);    
-  }
-  int nazh[4]{0,0,0,0}
-  all_knop()
-  
-  
- //----------
-}
+// //1-белый,2-синий,3-красный,4-зеленый
+// if (s==2) {
+//   int komb[4]{1,2,3,4};
+//   int komb_s=sizeof(komb)/sizeof(komb[0]);
 
-//разряжен
-if (s==1) {
-}  
+//   for (int a=1;a<komb_s;a++){
+//       matrix(1,komb[a]);
+//       delay(1000);
+//       matrix(0,komb[a]) ; 
+//       delay(1000);    
+//   }
+
+//   int nazh[4]{0,0,0,0};
+//   all_knop();
+  
+  
+//  //----------
+// }
+
+// //разряжен
+//   if (s==1) {
+//   }  
+}
